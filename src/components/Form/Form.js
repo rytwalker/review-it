@@ -10,8 +10,14 @@ function Form() {
   function handleChange(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+  }
+
   return (
-    <StyledForm>
+    <StyledForm onSubmit={handleSubmit}>
+      <h2 style={{ marginTop: 0 }}>Write A Review</h2>
       <FormGroup>
         <label htmlFor="stars">Rating:</label>
         <Stars id="stars" />

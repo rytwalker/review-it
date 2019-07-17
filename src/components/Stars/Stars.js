@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
 import Star from './Star';
+import { primary } from '../../utils';
 
 function Stars() {
   const [numOfStars] = useState(5);
@@ -26,9 +28,17 @@ function Stars() {
           isHovered={numOfHoverStars >= s + 1}
         />
       ))}
-      <button onClick={handleReset}>Reset</button>
+      <ResetButton onClick={handleReset}>Reset</ResetButton>
     </div>
   );
 }
+
+const ResetButton = styled.button`
+  cursor: pointer;
+  color: ${primary};
+  background: transparent;
+  border: none;
+  text-align: left;
+`;
 
 export default Stars;

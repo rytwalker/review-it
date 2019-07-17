@@ -1,4 +1,6 @@
 import React from 'react';
+// import styled from 'styled-components';
+import { darkGrey } from '../../utils';
 
 function Star({
   isActive,
@@ -18,13 +20,13 @@ function Star({
 
   function updateColor() {
     if (isActive && isHovered) {
-      return 'orange';
+      return '#F08A4B';
     } else if (isActive) {
-      return 'red';
+      return '#D78A76';
     } else if (isHovered) {
-      return 'yellow';
+      return '#F3CA40';
     } else {
-      return 'black';
+      return `${darkGrey}`;
     }
   }
   return (
