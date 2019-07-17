@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import Star from './Star';
 import { primary } from '../../utils';
 
-function Stars() {
+function Stars({ activeStars = 0, isSmall }) {
   const [numOfStars] = useState(5);
-  const [numOfActiveStars, setNumOfActiveStars] = useState(0);
+  const [numOfActiveStars, setNumOfActiveStars] = useState(activeStars);
   const [numOfHoverStars, setNumOfHoverStars] = useState(0);
 
   function handleReset() {
@@ -26,9 +26,10 @@ function Stars() {
           setNumOfHoverStars={setNumOfHoverStars}
           isActive={numOfActiveStars >= s + 1}
           isHovered={numOfHoverStars >= s + 1}
+          isSmall={isSmall}
         />
       ))}
-      <ResetButton onClick={handleReset}>Reset</ResetButton>
+      {!isSmall && <ResetButton onClick={handleReset}>Reset</ResetButton>}
     </div>
   );
 }

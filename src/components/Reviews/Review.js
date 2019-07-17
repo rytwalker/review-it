@@ -1,17 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
+import Stars from '../Stars/Stars';
 
-const Review = () => {
+const Review = ({ review }) => {
   return (
     <ReviewContainer>
-      <ReviewHeading>Slinky</ReviewHeading>
-      <ByLine>By: Ryan Walker</ByLine>
-      <ReviewBody>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius dolore
-        animi maxime sint, placeat nulla consequatur ea sequi quos repellat vel
-        illum laboriosam aperiam excepturi quisquam tenetur veritatis ullam
-        vero?
-      </ReviewBody>
+      <HeadingContainer>
+        <ReviewHeading>{review.item}</ReviewHeading>
+        <Stars isSmall={true} activeStars={review.rating} />
+      </HeadingContainer>
+
+      <ByLine>By: {review.name}</ByLine>
+      <ReviewBody>{review.review}</ReviewBody>
     </ReviewContainer>
   );
 };
@@ -22,6 +22,12 @@ const ReviewContainer = styled.div`
   border-radius: 4px;
   padding: 2rem;
   margin-bottom: 1rem;
+`;
+
+const HeadingContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 const ReviewHeading = styled.h3`
