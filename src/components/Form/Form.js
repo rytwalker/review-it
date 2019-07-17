@@ -1,27 +1,50 @@
 import React, { useState } from 'react';
 import Stars from '../Stars/Stars';
 import styled from 'styled-components';
+import FormInput from './FormInput';
+import { darkGrey, primary } from '../../utils/';
 
 function Form() {
+  const [formData, setFormData] = useState({ item: '', name: '', review: '' });
+
+  function handleChange(e) {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  }
   return (
     <StyledForm>
       <FormGroup>
-        <label>Rating:</label>
-        <Stars />
+        <label htmlFor="stars">Rating:</label>
+        <Stars id="stars" />
       </FormGroup>
       <FormGroup>
-        <label>What are you reviewing?</label>
-        <input type="text" />
+        <label htmlFor="item">What are you reviewing?</label>
+        <FormInput
+          handleChange={handleChange}
+          name="item"
+          value={formData.item}
+          placeholder="Some okay product"
+        />
       </FormGroup>
       <FormGroup>
-        <label>Name:</label>
-        <input type="text" />
+        <label htmlFor="name">Name:</label>
+        <FormInput
+          handleChange={handleChange}
+          name="name"
+          value={formData.name}
+          placeholder="John Doe"
+        />
       </FormGroup>
       <FormGroup>
-        <label>Review:</label>
-        <textarea />
+        <label htmlFor="review">Review:</label>
+        <textarea
+          id="review"
+          name="review"
+          value={formData.review}
+          onChange={handleChange}
+          placeholder="It all began on Christmas morning..."
+        />
       </FormGroup>
-      <button>Submit Review</button>
+      <FormButton>Submit Review</FormButton>
     </StyledForm>
   );
 }
@@ -34,7 +57,7 @@ const StyledForm = styled.form`
   padding: 20px;
   border-radius: 4px;
   background: #fff;
-  color: #31393c;
+  color: ${darkGrey};
 `;
 
 const FormGroup = styled.div`
@@ -43,18 +66,37 @@ const FormGroup = styled.div`
   margin-bottom: 20px;
   label {
     margin-bottom: 5px;
-    color: #31393c;
+    color: ${darkGrey};
   }
   input,
   textarea {
     font-size: inherit;
-    padding: 5px 10px;
-    border: 1px solid #ddd;
+    padding: 8px 10px;
+    border: 1px solid #efefef;
     border-radius: 4px;
+    background: #eee;
+    transition: all 0.5s;
+    &:focus {
+      outline: none;
+      border: 1px solid ${primary};
+    }
   }
   textarea {
     height: 200px;
   }
+`;
+
+const FormButton = styled.button`
+  font-size: inherit;
+  font-family: inherit;
+  color: #fff;
+  background: ${primary};
+  border: 1px solid transparent;
+  border-radius: 4px;
+  padding: 1rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  cursor: pointer;
 `;
 
 export default Form;
