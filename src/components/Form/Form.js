@@ -13,6 +13,12 @@ function Form() {
 
   function handleSubmit(e) {
     e.preventDefault();
+    const { item, name, review } = formData;
+    const newReview = {
+      item: item.trim(),
+      name: name.trim(),
+      review: review.trim()
+    };
   }
 
   return (

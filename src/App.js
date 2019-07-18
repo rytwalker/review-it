@@ -1,19 +1,24 @@
-import React from 'react';
+import React, { createContext } from 'react';
 import styled from 'styled-components';
 
 import Form from './components/Form/Form';
 import './App.css';
 import Reviews from './components/Reviews/Reviews';
 
+export const ReviewsContext = createContext();
+const contextValue = { reviewData: [], currentRating: 0 };
+
 function App() {
   return (
-    <div className="App">
-      <h1>Review.It</h1>
-      <Container>
-        <Form />
-        <Reviews />
-      </Container>
-    </div>
+    <ReviewsContext.Provider value={contextValue}>
+      <div className="App">
+        <h1>Review.It</h1>
+        <Container>
+          <Form />
+          <Reviews />
+        </Container>
+      </div>
+    </ReviewsContext.Provider>
   );
 }
 
